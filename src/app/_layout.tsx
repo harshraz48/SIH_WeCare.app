@@ -1,18 +1,19 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { Stack } from 'expo-router';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
-
-SplashScreen.preventAutoHideAsync();
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+export default function RootLayout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
+    <Stack>
+      {/* Assuming your login file is named login.tsx or index.tsx */}
+      <Stack.Screen 
+        name="index" 
+        options={{ headerShown: false }} 
+      />
+      
+      {/* Customizes the header for profile.tsx */}
+      <Stack.Screen 
+        name="profile" 
+        options={{ title: 'My Profile' }} 
+      />
+    </Stack>
   );
 }
